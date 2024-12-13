@@ -35,11 +35,15 @@ def connect_to_database(max_retries, delay):
 
 def initialize_collection(db):
     """
-    Создает коллекцию для шаблонов форм, если она еще не существует.
+    Создает коллекцию для шаблонов форм и индексов, если они еще не существуют.
     """
     if Config.MONGO_COLLECTION_NAME not in db.list_collection_names():
         db.create_collection(Config.MONGO_COLLECTION_NAME)
         print(f"Коллекция '{Config.MONGO_COLLECTION_NAME}' создана.")
+    if Config.INDEX_COLLECTION_NAME not in db.list_collection_names():
+        db.create_collection(Config.INDEX_COLLECTION_NAME)
+        print(f"Коллекция '{Config.INDEX_COLLECTION_NAME}' создана.")
+
 
 
 def initialize_database_connection():
