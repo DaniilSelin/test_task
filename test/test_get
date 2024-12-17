@@ -1,0 +1,28 @@
+curl -X POST http://127.0.0.1:5000/get_form \
+-H "Content-Type: application/json" \
+-d '{
+    "email": "user@example.com",
+    "phone": "+123456789",
+    "dob": "1990-01-01"
+}'
+
+curl -X POST http://127.0.0.1:5000/get_form \
+-H "Content-Type: application/json" \
+-d '{
+    "name": "John Doe",
+    "email": "contact@example.com",
+    "message": "This is a test message."
+}'
+
+curl -X POST http://127.0.0.1:5000/get_form \
+-H "Content-Type: application/json" \
+-d '{
+    "title": "Team Meeting",
+    "description": "Discuss project progress."
+}'
+
+curl -X POST http://127.0.0.1:5000/get_form \
+-H "Content-Type: application/json" \
+-d '{
+    "unknown_field": "some value"
+}'

@@ -1,0 +1,25 @@
+venv
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# Git-метаданные
+.git/
+.gitignore
+
+# Docker-файлы
+.dockerignore
+Dockerfile
+docker-compose.yml
+
+# Кэш
+*.swp
+*.swo
+*.log
+*.tmp
+
+# всякое от редакторов кода
+.vscode/
+.idea/
+*.iml

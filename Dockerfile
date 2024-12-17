@@ -1,31 +1,36 @@
 FROM ubuntu:latest
-LABEL authors="Daniil_auth_service"
+LABEL authors="DaniilSelin)"
 
-WORKDIR /server
+WORKDIR /eKom
 
-COPY ./server/__init__.py .
+COPY . /eKom
 
-COPY ./server/auth_service ./auth_service
-
-WORKDIR /server/auth_service
-
-# Установим Python и pip
 RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
     python3-venv \
     libpq-dev \
-    build-essential
+    build-essential \
+    libssl-dev \
+    zlib1g-dev \
+    libbz2-dev \
+    libreadline-dev \
+    libsqlite3-dev \
+    wget \
+    curl \
+    llvm \
+    libncurses5-dev \
+    libncursesw5-dev \
+    xz-utils \
+    tk-dev \
+    libffi-dev \
+    liblzma-dev \
+    python3-dev
 
-RUN python3 -m venv /venv
-ENV PATH="/venv/bin:$PATH"
 
-ENV PYTHONPATH="/server:/server/auth_service"
+RUN python3 -m venv venv
 
-RUN pip3 install -r requirements.txt
+RUN . venv/bin/activate && pip install --no-cache-dir -r requirements.txt
+EXPOSE 5000
 
-EXPOSE 5000 5672
-
-RUN ln -s /server /server/auth_service/server
-
-CMD ["python3", "auth_service.py"]
+RUN . venv/bin/activate && flask run

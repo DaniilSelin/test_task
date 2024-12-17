@@ -1,11 +1,31 @@
 version: '3.8'
 
 services:
-  db:
+  mongo:
     image: mongo:latest
-    container_name: mongodb-container
+    container_name: mongo
     ports:
       - "27017:27017"
+    volumes:
+      - db_data:/data/db
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: flask-app
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./log:/app/log  # Логи будут сохраняться в папке ./log на хосте
+    depends_on:
+          - mongo
+    networks:
+      - flask-network
 
 volumes:
   db_data:
+
+networks:
+  flask-network:
+    driver: bridge
