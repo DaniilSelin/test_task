@@ -12,7 +12,7 @@ curl -X POST http://127.0.0.1:5000/get_form \
     "name": "John Doe",
     "email": "contact@example.com",
     "message": "This is a test message."
-}'
+}'tech@leadhit.ru
 
 curl -X POST http://127.0.0.1:5000/get_form \
 -H "Content-Type: application/json" \
