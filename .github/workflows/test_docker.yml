@@ -30,12 +30,16 @@ jobs:
       - name: Wait for services to start
         run: sleep 10
 
-      - name: Test Flask app healthcheck
+      - name: Test app
         run: |
-          curl -X POST http://127.0.0.1:5000/clear_db || exit 1
+          . venv/bin/activate
+          pytest test/
 
-      - name: Check container logs
-        run: docker compose logs
+      - name: Upload log folder as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: log-folder
+          path: ./log
 
       - name: Clean up
         if: always()
