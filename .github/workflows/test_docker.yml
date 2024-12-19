@@ -20,12 +20,12 @@ jobs:
         run: docker --version
 
       - name: Check Docker Compose version
-        run: docker-compose --version
+        run: docker compose --version
 
       - name: Build and run Docker Compose
         run: |
-          docker-compose down --volumes --remove-orphans
-          docker-compose up -d --build
+          docker compose down --volumes --remove-orphans
+          docker compose up -d --build
 
       - name: Verify running containers
         run: docker ps
@@ -34,7 +34,7 @@ jobs:
         run: sleep 10
 
       - name: Check container logs
-        run: docker-compose logs
+        run: docker compose logs
 
       - name: Test Flask app healthcheck
         run: |
