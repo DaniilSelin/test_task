@@ -13,6 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+    
       - name: Set up Docker
         uses: docker/setup-buildx-action@v2
 
@@ -32,7 +37,7 @@ jobs:
 
       - name: Test app
         run: |
-          . venv/bin/activate
+          pip install --no-cache-dir -r requirements.txt
           pytest test/
 
       - name: Upload log folder as artifact
