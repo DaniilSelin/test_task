@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
-from eKom.validators import validate_field, validate_email, validate_phone, validate_date
-from eKom.database.db_operations import create_form_template, get_all_form_indexes, get_all_form_templates, find_templates_by_field, build_index, clear_database
-from eKom.logging_form import logger
+from validators import validate_field, validate_email, validate_phone, validate_date
+from database.db_operations import create_form_template, get_all_form_indexes, get_all_form_templates, find_templates_by_field, build_index, clear_database
+from logging_form import logger
 from pymongo.errors import OperationFailure, DuplicateKeyError
 from functools import wraps
 

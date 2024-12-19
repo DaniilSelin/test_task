@@ -8,6 +8,8 @@ services:
       - "27017:27017"
     volumes:
       - db_data:/data/db
+    networks:
+      - network
 
   app:
     build:
@@ -17,15 +19,16 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - ./log:/app/log  # Логи будут сохраняться в папке ./log на хосте
+      - ./log:/eKom/log  # Логи будут сохраняться в папке ./log на хосте
     depends_on:
           - mongo
     networks:
-      - flask-network
+      - network
 
 volumes:
   db_data:
 
 networks:
-  flask-network:
+  network:
     driver: bridge
+

@@ -3,10 +3,14 @@ venv
 *.pyo
 *.pyd
 __pycache__/
+test
+log
+
 
 # Git-метаданные
 .git/
 .gitignore
+README.md
 
 # Docker-файлы
 .dockerignore

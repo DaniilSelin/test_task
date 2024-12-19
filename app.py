@@ -1,5 +1,5 @@
 from flask import Flask
-from eKom.views import views_blueprint
+from views import views_blueprint
 
 app = Flask(__name__)
 
