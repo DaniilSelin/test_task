@@ -38,7 +38,55 @@ jobs:
       - name: Test app
         run: |
           pip install --no-cache-dir -r requirements.txt
+      
+          # Очищаем базу данных
+          curl -X POST http://127.0.0.1:5000/clear_db
+          
+          # Создаем шаблоны
+          curl -X POST http://127.0.0.1:5000/create_template \
+            -H "Content-Type: application/json" \
+            -d '{
+                "name": "User Registration",
+                "fields": [
+                    {"name": "email", "type": "email"},
+                    {"name": "phone", "type": "phone"},
+                    {"name": "dob", "type": "date"}
+                ]
+            }'
+      
+          curl -X POST http://127.0.0.1:5000/create_template \
+            -H "Content-Type: application/json" \
+            -d '{
+                "name": "Contact Form",
+                "fields": [
+                    {"name": "name", "type": "text"},
+                    {"name": "email", "type": "email"},
+                    {"name": "message", "type": "text"}
+                ]
+            }'
+      
+          curl -X POST http://127.0.0.1:5000/create_template \
+            -H "Content-Type: application/json" \
+            -d '{
+                "name": "Event Creation",
+                "fields": [
+                    {"name": "title", "type": "text"},
+                    {"name": "description", "type": "text"},
+                    {"name": "date", "type": "date"}
+                ]
+            }'
+      
+          curl -X POST http://127.0.0.1:5000/create_template \
+            -H "Content-Type: application/json" \
+            -d '{
+                "name": "Simple Form",
+                "fields": [
+                    {"name": "info", "type": "text"}
+                ]
+            }'
+      
           pytest test/
+
 
       - name: Upload log folder as artifact
         uses: actions/upload-artifact@v3
