@@ -1,6 +1,6 @@
 import pytest
 import requests
-from eKom.test.test_setup import BASE_URL
+from .test_setup import BASE_URL
 
 
 def test_get_form_user_registration():
